@@ -1,0 +1,32 @@
+@Adp.Dotnet.Test.Roz.Api_HostAddress = https://localhost:7118
+
+GET {{Adp.Dotnet.Test.Roz.Api_HostAddress}}/api/demo
+
+###
+
+POST {{Adp.Dotnet.Test.Roz.Api_HostAddress}}/api/demo
+Content-Type: application/json
+
+{
+    "name":"item3"
+}
+
+###
+
+PATCH {{Adp.Dotnet.Test.Roz.Api_HostAddress}}/api/demo
+Content-Type: application/json
+
+{
+    "id":"1",
+    "name":"item3"
+}
+
+###
+
+GET {{Adp.Dotnet.Test.Roz.Api_HostAddress}}/api/demo/1
+
+###
+
+DELETE {{Adp.Dotnet.Test.Roz.Api_HostAddress}}/api/demo/3
+
+###

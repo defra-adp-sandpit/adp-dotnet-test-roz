@@ -1,0 +1,16 @@
+services:
+  ? adp-dotnet-test-roz
+  : build:
+      target: development
+    image: adp-dotnet-test-roz-development
+    container_name: adp-dotnet-test-roz-test
+    user: root
+    entrypoint: sh -c "cd /home/dotnet && chown -R dotnet:dotnet . && su dotnet -c 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./test-output/'"
+    volumes:
+      - ./Adp.Dotnet.Test.Roz.sln:/home/dotnet/Adp.Dotnet.Test.Roz.sln
+      - ./src/Adp.Dotnet.Test.Roz.Core:/home/dotnet/src/Adp.Dotnet.Test.Roz.Core
+      - ./test/Adp.Dotnet.Test.Roz.Core.Tests:/home/dotnet/test/Adp.Dotnet.Test.Roz.Core.Tests
+      - ./src/Adp.Dotnet.Test.Roz.Api:/home/dotnet/src/Adp.Dotnet.Test.Roz.Api
+      - ./test/Adp.Dotnet.Test.Roz.Api.Tests:/home/dotnet/test/Adp.Dotnet.Test.Roz.Api.Tests
+      - ./test/Adp.Dotnet.Test.Roz.Api.Tests/test-output:/home/dotnet/test/Adp.Dotnet.Test.Roz.Api.Tests/test-output
+      - ./test/Adp.Dotnet.Test.Roz.Core.Tests/test-output:/home/dotnet/test/Adp.Dotnet.Test.Roz.Core.Tests/test-output

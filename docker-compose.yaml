@@ -1,0 +1,10 @@
+services:
+  ? adp-dotnet-test-roz
+  : build:
+      context: .
+      target: production
+    image: adp-dotnet-test-roz
+    container_name: adp-dotnet-test-roz
+    environment:
+      APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
+      APPINSIGHTS_CLOUDROLE: adp-dotnet-test-roz-local

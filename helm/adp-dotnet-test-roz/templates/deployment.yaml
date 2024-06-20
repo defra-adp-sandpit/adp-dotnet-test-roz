@@ -1,0 +1,11 @@
+{{- include "adp-helm-library.deployment" (list . "adp-dotnet-test-roz.deployment") -}}
+{{- define "adp-dotnet-test-roz.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "adp-helm-library.container" (list . "adp-dotnet-test-roz.container") }}
+      volumes:
+      - name: {{ .Values.volumeMounts.name }}
+        emptyDir: {}
+{{- end -}}

@@ -1,0 +1,24 @@
+services:
+  ? adp-dotnet-test-roz-core-tests
+  : build:
+      target: development
+    image: adp-dotnet-test-roz-core-tests-development
+    container_name: adp-dotnet-test-roz-core-tests
+    user: root
+    entrypoint: sh -c "cd /home/dotnet && chown -R dotnet:dotnet . && su dotnet -c 'dotnet watch --project test/Adp.Dotnet.Test.Roz.Core.Tests/Adp.Dotnet.Test.Roz.Core.Tests.csproj test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./test-output/'"
+    volumes:
+      - ./src/Adp.Dotnet.Test.Roz.Core:/home/dotnet/src/Adp.Dotnet.Test.Roz.Core
+      - ./test/Adp.Dotnet.Test.Roz.Core.Tests:/home/dotnet/test/Adp.Dotnet.Test.Roz.Core.Tests
+      - ./test-output:/home/dotnet/Adp.Dotnet.Test.Roz.Core.Tests/test-output
+
+  ? adp-dotnet-test-roz-api-tests
+  : build:
+      target: development
+    image: adp-dotnet-test-roz-api-tests-development
+    container_name: adp-dotnet-test-roz-api-tests
+    user: root
+    entrypoint: sh -c "cd /home/dotnet && chown -R dotnet:dotnet . && su dotnet -c 'dotnet watch --project test/Adp.Dotnet.Test.Roz.Api.Tests/Adp.Dotnet.Test.Roz.Api.Tests.csproj test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./test-output/'"
+    volumes:
+      - ./src/Adp.Dotnet.Test.Roz.Api:/home/dotnet/src/Adp.Dotnet.Test.Roz.Api
+      - ./test/Adp.Dotnet.Test.Roz.Api.Tests:/home/dotnet/test/Adp.Dotnet.Test.Roz.Api.Tests
+      - ./test-output:/home/dotnet/Adp.Dotnet.Test.Roz.Api.Tests/test-output
